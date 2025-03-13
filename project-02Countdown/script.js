@@ -4,7 +4,7 @@ const countdownDisplay = document.getElementById("countDownDisplay")
 // These are returned as objects
 
 function startTimer() {
-    const valueInSec = parseInt(timeInput.value);
+    let valueInSec = parseInt(timeInput.value);
     // NaN means not a number
 
     if (isNaN(valueInSec)) {
@@ -20,12 +20,30 @@ function startTimer() {
         return;
     }
 
-    setInterval()
+    const timer = setInterval(function() {
+        console.log("Timer ke andar")
+        valueInSec--;
+        if (valueInSec >= 0) {
+            countdownDisplay.innerText = `Time remaining: ${valueInSec} seconds`;
+        
+        } else {
+            countdownDisplay.innerText = `Time's up!!`
+            clearInterval(timer)
+        }
+        console.log(timer)
+        
+    }, 1000);
 
-    console.log(typeof timeInput) // object
-    console.log(timeInput.value) // number
-    console.log(typeof timeInput.value) // string
-    // input wale me value use kr sakte hain
+    console.log("timer se bhar")
+    // ab iska simple sa matlab yeh hua ki timer mera asyc call hai..
+    // control phele timer se bhar aaya tha aur phir uske baad woh andar gya tha
+    
+
+
+    // console.log(typeof timeInput) // object
+    // console.log(timeInput.value) // number
+    // console.log(typeof timeInput.value) // string
+    // // input wale me value use kr sakte hain
 }
 
 startButton.addEventListener('click', startTimer)
